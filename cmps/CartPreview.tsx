@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     marginLeft: 13 + 'px',
-    gap: 7 + 'px'
   },
   price: {
     fontSize: 0.8,

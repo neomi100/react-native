@@ -1,5 +1,5 @@
 import axios from 'axios'
-import localStorage from 'react-native-sync-localstorage'
+import { AsyncStorage } from 'react-native';
 
 const BASE_URL = process.env.NODE_ENV === 'production' ?
     '/api/' :
@@ -12,8 +12,8 @@ export const cartService = {
 
 
 async function addToCart(productsIds, userId) {
-    try{
-        const cart = await JSON.parse(localStorage.getItem('CART')) || { userId: null, productsIds: [] };
+    try {
+        const cart = await JSON.parse(AsyncStorage.getItem('CART')) || { userId: null, productsIds: [] };
         if (userId) {
             const cartUser = await axios.post(`${BASE_URL}carts/addToCart`, { productsIds, userId });
             return cartUser.data.value
@@ -21,12 +21,12 @@ async function addToCart(productsIds, userId) {
             productsIds.forEach(productId => {
                 cart.productsIds.push(productId)
             });
-            localStorage.setItem('CART', JSON.stringify(cart) || []);
+            AsyncStorage.setItem('CART', JSON.stringify(cart) || []);
             return cart
         }
 
-    }catch(err){
-     console.error(err)
+    } catch (err) {
+        console.error(err)
     }
 }
 // const cart = JSON.parse(localStorage.getItem('CART')) || { userId: null, productsIds: [] };

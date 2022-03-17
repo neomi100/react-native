@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Modal from "./Modal";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 
-export default function Header() {
+export default function Header({ navigation }: any) {
   const { loggedinUser } = useSelector((state: any) => state.userModule);
   const { cart } = useSelector((state: any) => state.cartModule);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -14,25 +13,26 @@ export default function Header() {
   };
 
   return (
-    <View style={[styles.appHeader]}>
-      <View>
-        <NavLink
-          exact
-          to="/"
-          activeClassName="active"
-          style={{ textDecoration: "none" }}
-        >
-          <Text style={[styles.logo]}>ENJOY</Text>
-        </NavLink>
+    <View style={styles.appHeader}>
+      <View >
+        <Text style={styles.logo}>ENJOY</Text>
+        <Button
+          title="Go to Home"
+          onPress={() => navigation.navigate('Home')}
+        />
       </View>
       <View style={[styles.userHeader]}>
         {loggedinUser && <View style={[styles.hello]}>Hello {loggedinUser.username.substr(0, 5)}</View>}
         <View style={[styles.patch]}>
           <View style={[styles.coverage]}></View>
         </View>
-        <NavLink exact to="/cart" activeClassName="active">
-          <View style={[styles.cart]}></View>
-        </NavLink>
+        <View >
+          <Text style={styles.cart}>CART</Text>
+          <Button
+            title="Go to your cart"
+            onPress={() => navigation.navigate('Cart')}
+          />
+        </View>
         {cart && cart.length > 0 ? (
           <View style={[styles.quantityProducts]}>{cart.length}</View>
         ) : (
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fdf7f4',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottom: '2px solid #f8ef99'
   },
   logo: {
     // margin: '3px 23px 6px 1.9vw',
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
   hello: {
     alignItems: 'center',
     color: 'darkslategrey',
-    fontSize: 1.7 + 'rem',
+    fontSize: 1.7,
     margin: '3px 7px 3px 0'
   },
   patch: {
@@ -113,7 +112,6 @@ const styles = StyleSheet.create({
   },
   userMenu: {
     alignItems: 'center',
-    cursor: 'pointer',
     borderRadius: 40,
     width: 'max-content'
   },

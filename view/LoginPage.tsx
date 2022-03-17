@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, setError } from "../store/userStore/userAction";
-import { NavLink } from "react-router-dom";
-import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity, Text, Button } from 'react-native';
 
-export default function LoginPage() {
-  const history = useHistory();
+export default function LoginPage({ navigation }: any) {
+  // const history = useHistory();
   const [fields, setFields] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
   // const userNameRef = useRef();
@@ -18,7 +17,7 @@ export default function LoginPage() {
   useEffect(() => {
     dispatch(setError());
     // userNameRef.current.focus();
-    if (loggedinUser) history.push("/");
+    // if (loggedinUser) history.push("/");
   }, [loggedinUser]);
 
   const login = (ev: any) => {
@@ -71,13 +70,13 @@ export default function LoginPage() {
         </TouchableOpacity>
         {systemMsg && <View style={[styles.errorMsg]}>{systemMsg}</View>}
         {errorMsg && <View style={[styles.errorMsg]}>{errorMsg}</View>}
-        <NavLink
-          to="/signup"
-          activeClassName="active-nav"
-          className="signup-btn"
-        >
-          Signup
-        </NavLink>
+        <View >
+          <Text>Signup</Text>
+          <Button
+            title="Go to Signup"
+            onPress={() => navigation.navigate('Signup')}
+          />
+        </View>
       </View>
     </View>
   );
@@ -89,17 +88,13 @@ const styles = StyleSheet.create({
     margin: '40 + px, 0'
   },
   formBtn: {
-    cursor: 'pointer',
     padding: 10 + 'px',
-    backgroundColor: ' #8a9dee',
     color: 'white',
-    border: 'none',
     marginTop: 20 + 'px',
     borderRadius: 7
   },
   errorMsg: {
     padding: 10 + 'px',
-    backgroundColor: 'rgb(233, 149, 149)',
     borderRadius: 7,
     textAlign: 'center'
   }

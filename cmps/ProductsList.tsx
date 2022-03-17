@@ -77,9 +77,7 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: 'center',
     flexWrap: 'wrap',
-    listStyle: 'none',
-    margin: 20, 'px': 0, 0: 0,
-    padding: 10 + 'px',
+    padding: '10 + px',
     fontSize: 95
   },
   previewContainer: {

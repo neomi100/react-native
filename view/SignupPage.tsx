@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { signupUser } from "../store/userStore/userAction";
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
 
 export default function SignupPage() {
   const [fields, setFields] = useState({ username: "", password: "" });
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   // const userNameRef = useRef();
   // const userPasswordRef = useRef();
@@ -22,7 +22,7 @@ export default function SignupPage() {
     if (username && password) {
       setErrorMsg("");
       dispatch(signupUser({ username, password }));
-      history.push("/");
+      // history.push("/");
     } else {
       setErrorMsg(
         "Complete the registration - a username and password must be entered"
@@ -79,11 +79,8 @@ const styles = StyleSheet.create({
     margin: '40 + px, 0'
   },
   formBtn: {
-    cursor: 'pointer',
     padding: 10 + 'px',
-    backgroundColor: ' #8a9dee',
     color: 'white',
-    border: 'none',
     marginTop: 20 + 'px',
     borderRadius: 7
   },

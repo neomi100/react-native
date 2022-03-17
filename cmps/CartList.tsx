@@ -96,8 +96,6 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: 'center',
     flexWrap: 'wrap',
-    listStyle: 'none',
-    margin: 20, 'px': 0, 0: 0,
     padding: 10 + 'px',
     fontSize: 95
   },
@@ -110,9 +108,7 @@ const styles = StyleSheet.create({
   },
   totalPrice: {
     marginBottom: 9 + 'px',
-    background: ' rgba(255, 255, 255, 0.8)',
     fontSize: 1.7,
-    boxShadow: ' 0, 0, 7: px, black',
     borderRadius: 4,
     textAlign: 'center',
     padding: 30 + 'px',

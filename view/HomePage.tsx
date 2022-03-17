@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ProductsList from "../cmps/ProductsList";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProducts } from "../store/productsStore/productsAction";
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 export default function HomePage() {
   const { products } = useSelector((state: any) => state.productsModule);
@@ -12,7 +12,7 @@ export default function HomePage() {
     dispatch(loadProducts());
   }, [products]);
 
-  if (!products) return <View>Loading&#8230;</View>;
+  if (!products) return <View><Text>Loading&#8230;</Text></View>;
   return (
     <View>
       <View style={[styles.page]}>

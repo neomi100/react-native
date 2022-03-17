@@ -38,11 +38,9 @@ const styles = StyleSheet.create({
     margin: '0, 30: px, 0'
   },
   emptyCart: {
-    background: 'rgba(255, 255, 255, 0.8)',
     width: 60 + '%',
     top: 40 + '%',
     left: 50 + '%',
-    boxShadow: ' 0, 0, 7: px, black',
     borderRadius: 4,
     textAlign: 'center',
     padding: 30 + 'px',
